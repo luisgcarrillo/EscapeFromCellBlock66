@@ -1,0 +1,157 @@
+[gd_scene load_steps=3 format=3 uid="uid://dex76d5cotpsl"]
+
+[ext_resource type="Script" path="res://Scripts/level_select.gd" id="1_fdrxs"]
+[ext_resource type="AudioStream" uid="uid://hjg88jxju20m" path="res://Sounds/Bit of Chiptune 3/Poco-Loco.wav" id="2_dtufg"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fdrxs")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0509804, 0.0509804, 0.0784314, 1)
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 2
+anchor_left = 0.01875
+anchor_top = 0.177778
+anchor_right = 0.98125
+anchor_bottom = 0.266667
+offset_bottom = -19.0
+text = "Click to go to specific level
+Hover to see level information"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="CenterContainer" type="CenterContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/CenterContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Level1" type="Button" parent="ColorRect/CenterContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(151, 32)
+layout_mode = 2
+text = "Level 1
+Bubba's Breakout Begins!"
+icon_alignment = 1
+
+[node name="Level2" type="Button" parent="ColorRect/CenterContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(151, 32)
+layout_mode = 2
+text = "Level 2
+Out of The Frying Pan..."
+icon_alignment = 1
+
+[node name="Level3" type="Button" parent="ColorRect/CenterContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(151, 32)
+layout_mode = 2
+text = "Level 3
+...Into The Caves!"
+icon_alignment = 1
+
+[node name="Level4" type="Button" parent="ColorRect/CenterContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(151, 32)
+layout_mode = 2
+text = "Level 4
+Walljump Walloping"
+icon_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ColorRect/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Level5" type="Button" parent="ColorRect/CenterContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(151, 32)
+layout_mode = 2
+text = "Level 5
+Hop, Skip and a Jump"
+icon_alignment = 1
+
+[node name="Level6" type="Button" parent="ColorRect/CenterContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(151, 32)
+layout_mode = 2
+text = "Level 6
+Underground Antics"
+icon_alignment = 1
+
+[node name="Level7" type="Button" parent="ColorRect/CenterContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(151, 32)
+layout_mode = 2
+text = "Level 7
+Crimson Climb"
+icon_alignment = 1
+
+[node name="Level8" type="Button" parent="ColorRect/CenterContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(151, 32)
+layout_mode = 2
+text = "Level 8
+The Final Gauntlet"
+icon_alignment = 1
+
+[node name="BackToMainMenu" type="Button" parent="ColorRect"]
+layout_mode = 0
+anchor_left = 0.0125
+anchor_top = 0.0222222
+anchor_right = 0.2875
+anchor_bottom = 0.0888889
+text = "Back to Main Menu"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+anchor_left = 0.025
+anchor_top = 0.711111
+anchor_right = 0.98125
+anchor_bottom = 0.955556
+text = "Level Info"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="LevelInfo" type="Label" parent="Label"]
+layout_mode = 0
+anchor_top = 0.181818
+anchor_right = 1.0
+anchor_bottom = 1.0
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_dtufg")
+autoplay = true
+bus = &"Music"
+
+[connection signal="mouse_entered" from="ColorRect/CenterContainer/VBoxContainer/HBoxContainer/Level1" to="." method="_on_level_1_mouse_entered"]
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/HBoxContainer/Level1" to="." method="_on_level_1_pressed"]
+[connection signal="mouse_entered" from="ColorRect/CenterContainer/VBoxContainer/HBoxContainer/Level2" to="." method="_on_level_2_mouse_entered"]
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/HBoxContainer/Level2" to="." method="_on_level_2_pressed"]
+[connection signal="mouse_entered" from="ColorRect/CenterContainer/VBoxContainer/HBoxContainer/Level3" to="." method="_on_level_3_mouse_entered"]
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/HBoxContainer/Level3" to="." method="_on_level_3_pressed"]
+[connection signal="mouse_entered" from="ColorRect/CenterContainer/VBoxContainer/HBoxContainer/Level4" to="." method="_on_level_4_mouse_entered"]
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/HBoxContainer/Level4" to="." method="_on_level_4_pressed"]
+[connection signal="mouse_entered" from="ColorRect/CenterContainer/VBoxContainer/HBoxContainer2/Level5" to="." method="_on_level_5_mouse_entered"]
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/HBoxContainer2/Level5" to="." method="_on_level_5_pressed"]
+[connection signal="mouse_entered" from="ColorRect/CenterContainer/VBoxContainer/HBoxContainer2/Level6" to="." method="_on_level_6_mouse_entered"]
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/HBoxContainer2/Level6" to="." method="_on_level_6_pressed"]
+[connection signal="mouse_entered" from="ColorRect/CenterContainer/VBoxContainer/HBoxContainer2/Level7" to="." method="_on_level_7_mouse_entered"]
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/HBoxContainer2/Level7" to="." method="_on_level_7_pressed"]
+[connection signal="mouse_entered" from="ColorRect/CenterContainer/VBoxContainer/HBoxContainer2/Level8" to="." method="_on_level_8_mouse_entered"]
+[connection signal="pressed" from="ColorRect/CenterContainer/VBoxContainer/HBoxContainer2/Level8" to="." method="_on_level_8_pressed"]
+[connection signal="pressed" from="ColorRect/BackToMainMenu" to="." method="_on_back_to_main_menu_pressed"]

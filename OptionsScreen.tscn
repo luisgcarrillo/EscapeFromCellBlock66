@@ -1,0 +1,105 @@
+[gd_scene load_steps=5 format=3 uid="uid://cb2ooifoc32x1"]
+
+[ext_resource type="Script" path="res://Scripts/OptionsScreen.gd" id="1_3h70r"]
+[ext_resource type="PackedScene" uid="uid://bi6sgks3kc5hj" path="res://Resources/volume_slider.tscn" id="2_j8j0m"]
+[ext_resource type="AudioStream" uid="uid://hjg88jxju20m" path="res://Sounds/Bit of Chiptune 3/Poco-Loco.wav" id="3_shi35"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yqmfo"]
+font_size = 24
+
+[node name="OptionsScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3h70r")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+text = "CONTROLS
+W/A/S/D or Arrow Keys: Move
+Spacebar: Jump / Walljump
+R: Restart Level
+ESC: Pause Game"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="MasterLabel" type="Label" parent="PanelContainer/CenterContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Master Volume"
+horizontal_alignment = 1
+
+[node name="volume_slider" parent="PanelContainer/CenterContainer/HBoxContainer/VBoxContainer" instance=ExtResource("2_j8j0m")]
+layout_mode = 2
+bus_name = "Master"
+
+[node name="MusicLabel" type="Label" parent="PanelContainer/CenterContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Music Volume"
+horizontal_alignment = 1
+
+[node name="volume_slider2" parent="PanelContainer/CenterContainer/HBoxContainer/VBoxContainer" instance=ExtResource("2_j8j0m")]
+layout_mode = 2
+bus_name = "Music"
+
+[node name="SFXLabel" type="Label" parent="PanelContainer/CenterContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Sound Effects Volume"
+horizontal_alignment = 1
+
+[node name="volume_slider3" parent="PanelContainer/CenterContainer/HBoxContainer/VBoxContainer" instance=ExtResource("2_j8j0m")]
+layout_mode = 2
+bus_name = "Sound Effects"
+
+[node name="ColorRect" type="ColorRect" parent="PanelContainer"]
+z_index = -1
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.00784314, 0, 0.262745, 1)
+
+[node name="BackToMainMenu" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0125
+anchor_top = 0.0222222
+anchor_right = 0.2875
+anchor_bottom = 0.0888889
+text = "Back to Main Menu"
+metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_shi35")
+autoplay = true
+bus = &"Music"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 284.0
+offset_top = 40.0
+offset_right = 356.0
+offset_bottom = 62.0
+text = "OPTIONS"
+label_settings = SubResource("LabelSettings_yqmfo")
+
+[connection signal="pressed" from="BackToMainMenu" to="." method="_on_back_to_main_menu_pressed"]
