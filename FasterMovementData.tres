@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PlayerMovementData" load_steps=2 format=3 uid="uid://b5eb6e272ud1m"]
+
+[ext_resource type="Script" path="res://Scripts/PlayerMovementData.gd" id="1_8ylkv"]
+
+[resource]
+script = ExtResource("1_8ylkv")
+speed = 200.0
+jump_velocity = -100.0
+acceleration = 800.0
+friction = 1500.0

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=2 format=3 uid="uid://dfxuhb0sqfiaa"]
+
+[ext_resource type="Script" path="res://Scripts/Resources.gd" id="1_rmyf4"]
+
+[resource]
+script = ExtResource("1_rmyf4")
+Level_Number = 7
+Level_Name = "Crimson Climb"
+Best_Time = 99999.0
+Star_Collected = false
