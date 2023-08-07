@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://c1bwc74h1o186"]
+
+[ext_resource type="Texture2D" uid="uid://dx22yb2mta6nh" path="res://Characters/Arrow_Double_Jump.png" id="1_hf4yn"]
+[ext_resource type="Script" path="res://Characters/double_jump.gd" id="1_sm5vv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n6ks1"]
+radius = 8.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s2oqh"]
+atlas = ExtResource("1_hf4yn")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3elu3"]
+atlas = ExtResource("1_hf4yn")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ya6c1"]
+atlas = ExtResource("1_hf4yn")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xt0y7"]
+atlas = ExtResource("1_hf4yn")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8ty4s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s2oqh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3elu3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ya6c1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xt0y7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="DoubleJump" type="Node2D" groups=["Pickups"]]
+script = ExtResource("1_sm5vv")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_n6ks1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8ty4s")
+autoplay = "default"
+frame_progress = 0.27268
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

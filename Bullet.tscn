@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://b6uyhnyk37jp6"]
+
+[ext_resource type="Texture2D" uid="uid://b68xb2cd54bth" path="res://Characters/turret_BULLET.png" id="1_630im"]
+[ext_resource type="Script" path="res://Characters/Bullet.gd" id="1_xajf7"]
+[ext_resource type="PackedScene" uid="uid://dlrkdjp5q83j2" path="res://Characters/hazard_area.tscn" id="3_4u8md"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nqseg"]
+atlas = ExtResource("1_630im")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fprkx"]
+atlas = ExtResource("1_630im")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6rkv4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nqseg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fprkx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hsnuo"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5s5cg"]
+radius = 7.0
+
+[node name="Bullet" type="Area2D" groups=["Projectiles"]]
+position = Vector2(8, -8)
+scale = Vector2(0.4, 0.4)
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("1_xajf7")
+
+[node name="BulletSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6rkv4")
+frame_progress = 0.513663
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-8.9407e-08, 8.9407e-08)
+scale = Vector2(0.9, 0.9)
+
+[node name="HazardArea" parent="." instance=ExtResource("3_4u8md")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea"]
+shape = SubResource("CircleShape2D_hsnuo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5s5cg")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

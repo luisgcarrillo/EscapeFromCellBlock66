@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://bspp87p6yu4j5"]
+
+[ext_resource type="Script" path="res://Scripts/JumpPad.gd" id="1_bpw40"]
+[ext_resource type="Texture2D" uid="uid://co0xpeuucsw8y" path="res://Characters/Jumper.png" id="2_ufaj6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8iyo3"]
+size = Vector2(21, 9)
+
+[sub_resource type="Animation" id="Animation_5howr"]
+resource_name = "Bounce"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.4, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 2, 3, 5, 7, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fl8hc"]
+_data = {
+"Bounce": SubResource("Animation_5howr")
+}
+
+[node name="JumpPad" type="Node2D"]
+script = ExtResource("1_bpw40")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, 3)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_8iyo3")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_ufaj6")
+hframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fl8hc")
+}
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

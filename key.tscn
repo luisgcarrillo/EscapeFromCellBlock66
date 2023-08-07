@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgt2j2ou4stl"]
+
+[ext_resource type="Texture2D" uid="uid://bxwn1jdgef28r" path="res://Art/Dungeon Tile Set.png" id="1_1atuo"]
+[ext_resource type="Script" path="res://Characters/key.gd" id="1_hbncp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l2kqb"]
+size = Vector2(14, 4)
+
+[node name="Key" type="Area2D" groups=["Key"]]
+position = Vector2(24, 0)
+collision_mask = 2
+script = ExtResource("1_hbncp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_l2kqb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_1atuo")
+region_enabled = true
+region_rect = Rect2(177, 152, 13, 4)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
