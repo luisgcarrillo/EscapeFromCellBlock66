@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=2 format=3 uid="uid://c2j15pl48rxvk"]
+
+[ext_resource type="Script" path="res://Scripts/Resources.gd" id="1_u0qdf"]
+
+[resource]
+script = ExtResource("1_u0qdf")
+Level_Number = 3
+Level_Name = "...Into the Caves!"
+Best_Time = 99999.0
+Star_Collected = false

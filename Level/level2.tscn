@@ -1,0 +1,274 @@
+[gd_scene load_steps=11 format=3 uid="uid://ivgo5onq60gd"]
+
+[ext_resource type="PackedScene" uid="uid://deckbivwtdckh" path="res://Level/world_template.tscn" id="1_eyf2p"]
+[ext_resource type="PackedScene" uid="uid://blytqqh8y3w2x" path="res://Level/level7.tscn" id="2_2ya7w"]
+[ext_resource type="PackedScene" uid="uid://dlrkdjp5q83j2" path="res://Characters/hazard_area.tscn" id="2_v1qeu"]
+[ext_resource type="PackedScene" uid="uid://ga7404yi50g0" path="res://Characters/spikes.tscn" id="3_yrtpf"]
+[ext_resource type="PackedScene" uid="uid://63e08mmcfoec" path="res://Characters/Turret.tscn" id="4_85wbv"]
+[ext_resource type="PackedScene" uid="uid://cern6hxdsp2cl" path="res://Characters/star.tscn" id="5_1y5o4"]
+[ext_resource type="PackedScene" uid="uid://dmcj2ndsx3kvd" path="res://Characters/switch_area.tscn" id="6_buw3n"]
+[ext_resource type="PackedScene" uid="uid://7y2qwshwcfy1" path="res://Characters/switch_block.tscn" id="7_e54g4"]
+[ext_resource type="PackedScene" uid="uid://c1bwc74h1o186" path="res://Characters/double_jump.tscn" id="8_g25qa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r61lf"]
+size = Vector2(335, 20)
+
+[node name="World" instance=ExtResource("1_eyf2p")]
+next_level = ExtResource("2_2ya7w")
+
+[node name="Player" parent="." index="0"]
+position = Vector2(32, 296)
+
+[node name="EndOfLevel" parent="." index="1"]
+position = Vector2(88, 32)
+
+[node name="LevelTileMap" parent="." index="2"]
+layer_0/tile_data = PackedInt32Array(589824, 196615, 1, 655360, 327687, 2, 720896, 65543, 3, 720897, 131079, 3, 655361, 786439, 6, 589825, 655367, 5, 589826, 393223, 2, 655362, 524295, 7, 720898, 131079, 3, 720899, 131079, 3, 655363, 589831, 7, 589827, 393223, 2, 589828, 393223, 2, 589829, 393223, 2, 655365, 524295, 7, 655364, 655367, 6, 720900, 131079, 3, 720901, 131079, 3, 589830, 655367, 5, 655366, 720903, 6, 720902, 131079, 3, 720903, 131079, 3, 655367, 589831, 6, 589831, 655367, 5, 589832, 327687, 2, 589833, 655367, 5, 720905, 131079, 3, 720904, 131079, 3, 655368, 589831, 6, 655369, 589831, 7, 589834, 327687, 2, 655370, 393223, 7, 720906, 131079, 3, 589835, 655367, 5, 655371, 720903, 7, 720907, 131079, 3, 720908, 131079, 3, 655372, 655367, 6, 589836, 327687, 2, 589837, 655367, 5, 589838, 655367, 5, 589839, 655367, 5, 589840, 655367, 5, 655373, 458759, 7, 655374, 393223, 6, 655375, 458759, 6, 655376, 393223, 3, 655395, 524295, 6, 655396, 524295, 7, 655397, 589831, 7, 655398, 458759, 6, 655399, 393223, 3, 589859, 393223, 2, 589860, 393223, 2, 589861, 393223, 2, 589862, 393223, 2, 589863, 393223, 3, 720909, 131079, 3, 720910, 131079, 3, 720911, 131079, 3, 720912, 196615, 3, 720931, 131079, 3, 720932, 131079, 3, 720933, 196615, 3, 720934, 393223, 3, 720935, 393223, 3, 589850, 327687, 2, 655386, 393223, 3, 720922, 65543, 3, 589851, 655367, 5, 655387, 458759, 6, 720923, 131079, 3, 589852, 393223, 2, 655388, 589831, 6, 720924, 131079, 3, 589853, 393223, 2, 655389, 589831, 6, 720925, 131079, 3, 589854, 393223, 2, 655390, 524295, 6, 720926, 131079, 3, 589855, 393223, 2, 655391, 655367, 7, 720927, 131079, 3, 589856, 393223, 2, 655392, 786439, 6, 720928, 131079, 3, 589857, 393223, 2, 655393, 393223, 7, 720929, 131079, 3, 589858, 393223, 2, 655394, 655367, 7, 720930, 131079, 3, -655360, 393223, 2, -589824, 196615, 1, -524288, 196615, 2, -458752, 196615, 2, 524288, 327687, 2, 458752, 327687, 2, 393216, 65543, 2, 327680, 196615, 2, 262144, 393223, 3, 196608, 196615, 2, 131072, 196615, 2, 65536, 196615, 2, 0, 196615, 2, -262144, 196615, 2, -196608, 196615, 2, -131072, 196615, 2, -65536, 196615, 2, -327680, 196615, 2, -393216, 196615, 2, 524327, 393223, 3, 458791, 393223, 3, 393255, 393223, 3, 327719, 655367, 5, 262183, 393223, 3, 196647, 393223, 3, 131111, 393223, 3, 65575, 393223, 3, 39, 196615, 3, -65497, 196615, 2, -131033, 393223, 3, -196569, 393223, 3, -262105, 393223, 3, -327641, 393223, 3, -524249, 393223, 3, -589785, 393223, 3, -655321, 393223, 3, -720857, 655367, 5, -720896, 655367, 5, -720892, 131079, 3, -720891, 131079, 3, -720890, 131079, 3, -720889, 131079, 3, -720888, 131079, 3, -720887, 131079, 3, -720886, 131079, 3, -720885, 131079, 3, -720884, 131079, 3, -720883, 131079, 3, -720882, 131079, 3, -720881, 131079, 3, -720880, 131079, 3, -720879, 131079, 3, -720878, 131079, 3, -720877, 131079, 3, -720876, 196615, 3, -720875, 393223, 2, -720874, 655367, 5, -720873, 65543, 3, -720862, 131079, 3, -720863, 131079, 3, -720864, 131079, 3, -720865, 131079, 3, -720866, 131079, 3, -720867, 131079, 3, -720868, 131079, 3, -720869, 131079, 3, -720861, 131079, 3, -720860, 131079, 3, -720859, 196615, 3, -720858, 393223, 3, 393217, 131079, 3, 393218, 131079, 3, 393219, 131079, 3, 393220, 131079, 3, 393221, 131079, 3, 393222, 196615, 3, 393223, 393223, 3, 393224, 393223, 3, 327688, 393223, 2, 262152, 393223, 2, 196616, 393223, 2, 131080, 393223, 2, 65544, 393223, 2, 8, 655367, 5, 9, 131079, 3, 10, 131079, 3, 11, 131079, 3, 12, 131079, 3, 13, 131079, 3, 14, 131079, 3, 15, 131079, 3, 16, 131079, 3, 17, 131079, 3, 18, 131079, 3, 19, 131079, 3, -458713, 393223, 3, -393177, 393223, 3, -720895, 131079, 3, -720894, 131079, 3, -720893, 131079, 3, 327692, 327687, 3, 327693, 393223, 3, 327694, 393223, 3, 327695, 393223, 3, 327696, 393223, 3, 262164, 327687, 3, 262165, 393223, 3, 262166, 393223, 3, 262167, 393223, 3, 262168, 393223, 3, 262169, 393223, 3, 196633, 393223, 2, 131097, 393223, 2, 65561, 393223, 2, 25, 393223, 2, -589794, 327687, 3, -589795, 327687, 3, -589796, 327687, 3, -589797, 327687, 3, -589798, 327687, 3, -589799, 655367, 5, -655338, 393223, 3, -589802, 393223, 3, -524266, 393223, 3, -458730, 393223, 3, -393194, 393223, 3, -327658, 196615, 3, -327659, 131079, 3, -327660, 131079, 3, -327661, 131079, 3, -327662, 131079, 3, -327663, 131079, 3, -327664, 131079, 3, -327665, 131079, 3, -327666, 131079, 3, -327667, 131079, 3, -327668, 131079, 3, -327669, 131079, 3, -327670, 131079, 3, -327671, 131079, 3, -327672, 131079, 3, -327673, 131079, 3, -327674, 65543, 3, -327675, 327687, 3, -327676, 327687, 2, -262140, 393223, 3, -196604, 393223, 3, -131068, 393223, 3, -65532, 393223, 3, 4, 393223, 3, 65540, 393223, 3, 131076, 393223, 3, 196612, 393223, 3, -655356, 393223, 3, -589820, 655367, 5, -524284, 327687, 3, -524283, 393223, 3, -524282, 393223, 3, -524281, 393223, 3, -524280, 393223, 3, -524279, 393223, 3, -720872, 131079, 3, -720871, 131079, 3, -720870, 131079, 3, -524263, 393223, 3, -458727, 393223, 3, -393191, 393223, 3, -327655, 393223, 3, 20, 196615, 3, -65511, 393223, 2)
+
+[node name="HazardArea" parent="." index="5" instance=ExtResource("2_v1qeu")]
+position = Vector2(296, 336)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea" index="0"]
+position = Vector2(24, 56)
+shape = SubResource("RectangleShape2D_r61lf")
+
+[node name="Spikes" parent="." index="6" instance=ExtResource("3_yrtpf")]
+position = Vector2(136, 160)
+
+[node name="Spikes2" parent="." index="7" instance=ExtResource("3_yrtpf")]
+position = Vector2(152, 160)
+
+[node name="Spikes3" parent="." index="8" instance=ExtResource("3_yrtpf")]
+position = Vector2(168, 160)
+
+[node name="Spikes4" parent="." index="9" instance=ExtResource("3_yrtpf")]
+position = Vector2(184, 160)
+
+[node name="Spikes5" parent="." index="10" instance=ExtResource("3_yrtpf")]
+position = Vector2(192, 160)
+
+[node name="Spikes6" parent="." index="11" instance=ExtResource("3_yrtpf")]
+position = Vector2(208, 160)
+
+[node name="Spikes7" parent="." index="12" instance=ExtResource("3_yrtpf")]
+position = Vector2(256, 160)
+
+[node name="Spikes8" parent="." index="13" instance=ExtResource("3_yrtpf")]
+position = Vector2(264, 160)
+
+[node name="Spikes9" parent="." index="14" instance=ExtResource("3_yrtpf")]
+position = Vector2(280, 160)
+
+[node name="LeftSpike" parent="." index="15" instance=ExtResource("3_yrtpf")]
+position = Vector2(392, 64)
+rotation = -1.5708
+
+[node name="LeftSpike2" parent="." index="16" instance=ExtResource("3_yrtpf")]
+position = Vector2(392, 32)
+rotation = -1.5708
+
+[node name="LeftSpike3" parent="." index="17" instance=ExtResource("3_yrtpf")]
+position = Vector2(392, 48)
+rotation = -1.5708
+
+[node name="LeftSpike4" parent="." index="18" instance=ExtResource("3_yrtpf")]
+position = Vector2(392, 80)
+rotation = -1.5708
+
+[node name="LeftSpike5" parent="." index="19" instance=ExtResource("3_yrtpf")]
+position = Vector2(392, 96)
+rotation = -1.5708
+
+[node name="RightSpike" parent="." index="20" instance=ExtResource("3_yrtpf")]
+position = Vector2(88, 177)
+rotation = 1.5708
+
+[node name="Turret" parent="." index="21" instance=ExtResource("4_85wbv")]
+position = Vector2(432, 56)
+
+[node name="Turret2" parent="." index="22" instance=ExtResource("4_85wbv")]
+position = Vector2(40, 24)
+
+[node name="Star" parent="." index="23" instance=ExtResource("5_1y5o4")]
+position = Vector2(404, 24)
+scale = Vector2(0.5, 0.5)
+
+[node name="SwitchBlock" parent="." index="24" instance=ExtResource("7_e54g4")]
+visible = false
+position = Vector2(464, 296)
+scale = Vector2(0.6, 0.6)
+
+[node name="SwitchBlock2" parent="." index="25" instance=ExtResource("7_e54g4")]
+visible = false
+position = Vector2(476, 296)
+scale = Vector2(0.6, 0.6)
+
+[node name="SwitchBlock3" parent="." index="26" instance=ExtResource("7_e54g4")]
+visible = false
+position = Vector2(488, 296)
+scale = Vector2(0.6, 0.6)
+
+[node name="SwitchBlock11" parent="." index="27" instance=ExtResource("7_e54g4")]
+visible = false
+position = Vector2(452, 296)
+scale = Vector2(0.6, 0.6)
+
+[node name="SwitchBlock4" parent="." index="28" instance=ExtResource("7_e54g4")]
+position = Vector2(560, 264)
+scale = Vector2(0.6, 0.6)
+
+[node name="SwitchBlock5" parent="." index="29" instance=ExtResource("7_e54g4")]
+position = Vector2(572, 264)
+scale = Vector2(0.6, 0.6)
+
+[node name="SwitchBlock6" parent="." index="30" instance=ExtResource("7_e54g4")]
+position = Vector2(584, 264)
+scale = Vector2(0.6, 0.6)
+
+[node name="SwitchBlock12" parent="." index="31" instance=ExtResource("7_e54g4")]
+position = Vector2(596, 264)
+scale = Vector2(0.6, 0.6)
+
+[node name="SwitchBlock7" parent="." index="32" instance=ExtResource("7_e54g4")]
+visible = false
+position = Vector2(449, 238)
+scale = Vector2(0.6, 0.6)
+
+[node name="SwitchBlock8" parent="." index="33" instance=ExtResource("7_e54g4")]
+visible = false
+position = Vector2(461, 238)
+scale = Vector2(0.6, 0.6)
+
+[node name="SwitchBlock9" parent="." index="34" instance=ExtResource("7_e54g4")]
+visible = false
+position = Vector2(473, 238)
+scale = Vector2(0.6, 0.6)
+
+[node name="SwitchBlock10" parent="." index="35" instance=ExtResource("7_e54g4")]
+visible = false
+position = Vector2(485, 238)
+scale = Vector2(0.6, 0.6)
+
+[node name="SwitchArea2" parent="." index="36" instance=ExtResource("6_buw3n")]
+position = Vector2(520, 264)
+
+[node name="SwitchArea5" parent="." index="37" instance=ExtResource("6_buw3n")]
+position = Vector2(520, 220)
+
+[node name="SwitchBlock13" parent="." index="38" instance=ExtResource("7_e54g4")]
+visible = false
+position = Vector2(449, 214)
+scale = Vector2(0.6, 0.6)
+
+[node name="SwitchBlock14" parent="." index="39" instance=ExtResource("7_e54g4")]
+visible = false
+position = Vector2(449, 226)
+scale = Vector2(0.6, 0.6)
+
+[node name="SwitchBlock15" parent="." index="40" instance=ExtResource("7_e54g4")]
+visible = false
+position = Vector2(449, 202)
+scale = Vector2(0.6, 0.6)
+
+[node name="SwitchBlock16" parent="." index="41" instance=ExtResource("7_e54g4")]
+position = Vector2(572, 166)
+scale = Vector2(0.6, 0.6)
+
+[node name="SwitchBlock17" parent="." index="42" instance=ExtResource("7_e54g4")]
+position = Vector2(584, 166)
+scale = Vector2(0.6, 0.6)
+
+[node name="SwitchBlock18" parent="." index="43" instance=ExtResource("7_e54g4")]
+position = Vector2(596, 166)
+scale = Vector2(0.6, 0.6)
+
+[node name="SwitchBlock32" parent="." index="44" instance=ExtResource("7_e54g4")]
+position = Vector2(560, 166)
+scale = Vector2(0.6, 0.6)
+
+[node name="SwitchArea3" parent="." index="45" instance=ExtResource("6_buw3n")]
+position = Vector2(520, 148)
+
+[node name="SwitchArea6" parent="." index="46" instance=ExtResource("6_buw3n")]
+position = Vector2(554, 66)
+
+[node name="SwitchBlock19" parent="." index="47" instance=ExtResource("7_e54g4")]
+visible = false
+position = Vector2(449, 178)
+scale = Vector2(0.6, 0.6)
+
+[node name="SwitchBlock20" parent="." index="48" instance=ExtResource("7_e54g4")]
+visible = false
+position = Vector2(449, 190)
+scale = Vector2(0.6, 0.6)
+
+[node name="SwitchBlock21" parent="." index="49" instance=ExtResource("7_e54g4")]
+visible = false
+position = Vector2(449, 166)
+scale = Vector2(0.6, 0.6)
+
+[node name="SwitchBlock37" parent="." index="50" instance=ExtResource("7_e54g4")]
+visible = false
+position = Vector2(449, 154)
+scale = Vector2(0.6, 0.6)
+
+[node name="SwitchBlock25" parent="." index="51" instance=ExtResource("7_e54g4")]
+position = Vector2(496, 40)
+scale = Vector2(0.78, 0.78)
+
+[node name="SwitchBlock26" parent="." index="52" instance=ExtResource("7_e54g4")]
+position = Vector2(512, 40)
+scale = Vector2(0.78, 0.78)
+
+[node name="SwitchBlock27" parent="." index="53" instance=ExtResource("7_e54g4")]
+position = Vector2(528, 40)
+scale = Vector2(0.78, 0.78)
+
+[node name="SwitchBlock28" parent="." index="54" instance=ExtResource("7_e54g4")]
+visible = false
+position = Vector2(496, 40)
+scale = Vector2(0.78, 0.799)
+
+[node name="SwitchBlock29" parent="." index="55" instance=ExtResource("7_e54g4")]
+visible = false
+position = Vector2(496, 54)
+scale = Vector2(0.78, 0.78)
+
+[node name="SwitchBlock30" parent="." index="56" instance=ExtResource("7_e54g4")]
+visible = false
+position = Vector2(496, 70)
+scale = Vector2(0.78, 0.78)
+
+[node name="SwitchBlock31" parent="." index="57" instance=ExtResource("7_e54g4")]
+visible = false
+position = Vector2(496, 85)
+scale = Vector2(0.78, 0.78)
+
+[node name="SwitchBlock36" parent="." index="58" instance=ExtResource("7_e54g4")]
+visible = false
+position = Vector2(496, 101)
+scale = Vector2(0.78, 0.78)
+
+[node name="SwitchBlock34" parent="." index="59" instance=ExtResource("7_e54g4")]
+position = Vector2(544, 40)
+scale = Vector2(0.78, 0.78)
+
+[node name="SwitchBlock35" parent="." index="60" instance=ExtResource("7_e54g4")]
+position = Vector2(560, 40)
+scale = Vector2(0.78, 0.78)
+
+[node name="SwitchArea4" parent="." index="61" instance=ExtResource("6_buw3n")]
+position = Vector2(596, 40)
+
+[node name="SwitchArea7" parent="." index="62" instance=ExtResource("6_buw3n")]
+position = Vector2(602, 305)
+
+[node name="DoubleJump" parent="." index="63" instance=ExtResource("8_g25qa")]
+position = Vector2(176, 136)
+
+[connection signal="body_entered" from="SwitchArea2" to="." method="_on_switch_area_body_entered"]
+[connection signal="body_entered" from="SwitchArea5" to="." method="_on_switch_area_body_entered"]
+[connection signal="body_entered" from="SwitchArea3" to="." method="_on_switch_area_body_entered"]
+[connection signal="body_entered" from="SwitchArea6" to="." method="_on_switch_area_body_entered"]
+[connection signal="body_entered" from="SwitchArea4" to="." method="_on_switch_area_body_entered"]
+[connection signal="body_entered" from="SwitchArea7" to="." method="_on_switch_area_body_entered"]

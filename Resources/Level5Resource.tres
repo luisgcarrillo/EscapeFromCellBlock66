@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=2 format=3 uid="uid://d0iaxeotva85c"]
+
+[ext_resource type="Script" path="res://Scripts/Resources.gd" id="1_4mji6"]
+
+[resource]
+script = ExtResource("1_4mji6")
+Level_Number = 5
+Level_Name = "Hop, Skip and a Jump"
+Best_Time = 99999.0
+Star_Collected = false

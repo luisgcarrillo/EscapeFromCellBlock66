@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=2 format=3 uid="uid://c3v5q4jvc1alh"]
+
+[ext_resource type="Script" path="res://Scripts/Resources.gd" id="1_ktud4"]
+
+[resource]
+script = ExtResource("1_ktud4")
+Level_Number = 8
+Level_Name = "The Final Gauntlet"
+Best_Time = 99999.0
+Star_Collected = false

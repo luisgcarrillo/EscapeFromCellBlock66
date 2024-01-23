@@ -1,0 +1,296 @@
+[gd_scene load_steps=22 format=3 uid="uid://10b0cxpatnge"]
+
+[ext_resource type="Texture2D" uid="uid://c80oje3s76opb" path="res://Characters/prisoner_sprite_sheet_transparent_16x16.png" id="1_vo8pi"]
+
+[sub_resource type="GDScript" id="GDScript_nrgg5"]
+script/source = "extends ColorRect
+
+@onready var animated_sprite_2d = $PlayerSprite/AnimatedSprite2D
+@onready var animation_player = $PlayerSprite/AnimationPlayer
+@onready var level_completed = $\".\"
+
+signal retry
+signal next_level
+var level_complete = false
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	if level_complete == true:
+		animation_player.play(\"level_complete\")
+		animated_sprite_2d.play(\"run\")
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	if level_completed.visible == true:
+		level_complete = true
+		animated_sprite_2d.play(\"run\")
+
+func set_best_time(value):
+	$CenterContainer/VBoxContainer/VBoxContainer/BestTime.text = \"Best Time: \" + str(snappedf(value,.001))
+
+
+func _on_next_level_pressed():
+	next_level.emit()
+
+
+func _on_retry_level_pressed():
+	retry.emit()
+
+
+func _on_quit_button_pressed():
+	get_tree().quit()
+
+
+func _on_main_menu_pressed():
+	get_tree().change_scene_to_file(\"res://Level/StartMenu.tscn\")
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_2f6ys"]
+font_size = 64
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pqsku"]
+atlas = ExtResource("1_vo8pi")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwb04"]
+atlas = ExtResource("1_vo8pi")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ca6st"]
+atlas = ExtResource("1_vo8pi")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rusyv"]
+atlas = ExtResource("1_vo8pi")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7pvi"]
+atlas = ExtResource("1_vo8pi")
+region = Rect2(128, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35raj"]
+atlas = ExtResource("1_vo8pi")
+region = Rect2(160, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5rl2"]
+atlas = ExtResource("1_vo8pi")
+region = Rect2(192, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tenkk"]
+atlas = ExtResource("1_vo8pi")
+region = Rect2(64, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2sjy"]
+atlas = ExtResource("1_vo8pi")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7x1pw"]
+atlas = ExtResource("1_vo8pi")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3lk6g"]
+atlas = ExtResource("1_vo8pi")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgge4"]
+atlas = ExtResource("1_vo8pi")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bgtc8"]
+atlas = ExtResource("1_vo8pi")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1qe34"]
+atlas = ExtResource("1_vo8pi")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5jua"]
+atlas = ExtResource("1_vo8pi")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_saqf4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pqsku")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwb04")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ca6st")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rusyv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7pvi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_35raj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5rl2")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tenkk")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2sjy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7x1pw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3lk6g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cgge4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bgtc8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1qe34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u5jua")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="Animation" id="Animation_0hqik"]
+resource_name = "level_complete"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-64, 192), Vector2(320, 184)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerSprite/AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"run"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ge4s5"]
+_data = {
+"level_complete": SubResource("Animation_0hqik")
+}
+
+[node name="LevelCompleted" type="ColorRect"]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.352941)
+script = SubResource("GDScript_nrgg5")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Level Complete!
+
+
+
+"
+label_settings = SubResource("LabelSettings_2f6ys")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TimeLabel" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="BestTime" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "New Best Time!"
+horizontal_alignment = 1
+
+[node name="NextLevel" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Next Level"
+
+[node name="RetryLevel" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Retry Level"
+
+[node name="MainMenu" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Main Menu"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer/VBoxContainer"]
+process_mode = 3
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Quit
+"
+
+[node name="PlayerSprite" type="CharacterBody2D" parent="."]
+position = Vector2(-64, 192)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="PlayerSprite"]
+scale = Vector2(4.6001, 4.6001)
+sprite_frames = SubResource("SpriteFrames_saqf4")
+animation = &"run"
+frame = 6
+frame_progress = 1.0
+
+[node name="MidscreenTimer" type="Timer" parent="PlayerSprite"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerSprite"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_ge4s5")
+}
+autoplay = "level_complete"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/NextLevel" to="." method="_on_next_level_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/RetryLevel" to="." method="_on_retry_level_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

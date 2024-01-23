@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=2 format=3 uid="uid://b0stxkgxgydir"]
+
+[ext_resource type="Script" path="res://Scripts/Resources.gd" id="1_vrlt6"]
+
+[resource]
+script = ExtResource("1_vrlt6")
+Level_Number = 1
+Level_Name = "Bubba's Breakout Begins!"
+Best_Time = 0.0
+Star_Collected = true

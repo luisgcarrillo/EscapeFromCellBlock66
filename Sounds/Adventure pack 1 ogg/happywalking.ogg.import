@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dqh2g6pibdjg3"
+path="res://.godot/imported/happywalking.ogg-8fe10abf41024508912f1208a481cf4b.oggvorbisstr"
+
+[deps]
+
+source_file="res://Sounds/Adventure pack 1 ogg/happywalking.ogg"
+dest_files=["res://.godot/imported/happywalking.ogg-8fe10abf41024508912f1208a481cf4b.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

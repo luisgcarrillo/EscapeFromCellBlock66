@@ -1,0 +1,570 @@
+[gd_scene load_steps=32 format=3 uid="uid://deckbivwtdckh"]
+
+[ext_resource type="Script" path="res://Scripts/world.gd" id="1_b41as"]
+[ext_resource type="PackedScene" uid="uid://8b2tdv5xex3v" path="res://Characters/player.tscn" id="2_bchhq"]
+[ext_resource type="PackedScene" uid="uid://ryrl5wsstq1p" path="res://Level/end_of_level.tscn" id="3_aj04k"]
+[ext_resource type="PackedScene" uid="uid://2rrb4o2dx8pd" path="res://Level/level_tile_map.tscn" id="4_eustp"]
+[ext_resource type="Texture2D" uid="uid://cf8qn6c18nxfn" path="res://Art/parallax-space-backgound.png" id="5_au7ra"]
+[ext_resource type="Texture2D" uid="uid://c80oje3s76opb" path="res://Characters/prisoner_sprite_sheet_transparent_16x16.png" id="7_cx36q"]
+[ext_resource type="PackedScene" uid="uid://bi6sgks3kc5hj" path="res://Resources/volume_slider.tscn" id="8_jdji5"]
+
+[sub_resource type="GDScript" id="GDScript_nrgg5"]
+script/source = "extends ColorRect
+
+@onready var animated_sprite_2d = $PlayerSprite/AnimatedSprite2D
+@onready var animation_player = $PlayerSprite/AnimationPlayer
+@onready var level_completed = $\".\"
+
+signal retry
+signal next_level
+var level_complete = false
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	if level_complete == true:
+		animation_player.play(\"level_complete\")
+		animated_sprite_2d.play(\"run\")
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	if level_completed.visible == true:
+		level_complete = true
+		animated_sprite_2d.play(\"run\")
+
+func set_best_time(value):
+	$CenterContainer/VBoxContainer/VBoxContainer/BestTime.text = \"Best Time: \" + str(snappedf(value,.001))
+
+
+func _on_next_level_pressed():
+	next_level.emit()
+
+
+func _on_retry_level_pressed():
+	retry.emit()
+
+
+func _on_quit_button_pressed():
+	get_tree().quit()
+
+
+func _on_main_menu_pressed():
+	get_tree().change_scene_to_file(\"res://Level/StartMenu.tscn\")
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_2f6ys"]
+font_size = 64
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pqsku"]
+atlas = ExtResource("7_cx36q")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwb04"]
+atlas = ExtResource("7_cx36q")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ca6st"]
+atlas = ExtResource("7_cx36q")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rusyv"]
+atlas = ExtResource("7_cx36q")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r7pvi"]
+atlas = ExtResource("7_cx36q")
+region = Rect2(128, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35raj"]
+atlas = ExtResource("7_cx36q")
+region = Rect2(160, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5rl2"]
+atlas = ExtResource("7_cx36q")
+region = Rect2(192, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tenkk"]
+atlas = ExtResource("7_cx36q")
+region = Rect2(64, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2sjy"]
+atlas = ExtResource("7_cx36q")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7x1pw"]
+atlas = ExtResource("7_cx36q")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3lk6g"]
+atlas = ExtResource("7_cx36q")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgge4"]
+atlas = ExtResource("7_cx36q")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bgtc8"]
+atlas = ExtResource("7_cx36q")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1qe34"]
+atlas = ExtResource("7_cx36q")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5jua"]
+atlas = ExtResource("7_cx36q")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_saqf4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pqsku")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwb04")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ca6st")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rusyv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r7pvi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_35raj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y5rl2")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tenkk")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2sjy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7x1pw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3lk6g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cgge4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bgtc8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1qe34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u5jua")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="Animation" id="Animation_0hqik"]
+resource_name = "level_complete"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-64, 192), Vector2(320, 184)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerSprite/AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"run"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ge4s5"]
+_data = {
+"level_complete": SubResource("Animation_0hqik")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_6y1sp"]
+font_size = 32
+
+[sub_resource type="Animation" id="Animation_qmw7y"]
+resource_name = "Countdown"
+length = 3.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/StartIn:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/StartIn/VBoxContainer/CenterContainer/StartInLabel:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4, 1.4, 2.4, 3.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": ["Starts in: 3", "Starts in: 2", "Starts in: 1", "GO!"]
+}
+
+[sub_resource type="Animation" id="Animation_x8k3w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/StartIn:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer/StartIn/VBoxContainer/CenterContainer/StartInLabel:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Starts in: 3"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8jtcm"]
+_data = {
+"Countdown": SubResource("Animation_qmw7y"),
+"RESET": SubResource("Animation_x8k3w")
+}
+
+[node name="World" type="Node2D" groups=["Levels"]]
+script = ExtResource("1_b41as")
+
+[node name="Player" parent="." instance=ExtResource("2_bchhq")]
+position = Vector2(608, 296)
+floor_snap_length = 1.0
+
+[node name="EndOfLevel" parent="." instance=ExtResource("3_aj04k")]
+position = Vector2(432, 40)
+
+[node name="LevelTileMap" parent="." instance=ExtResource("4_eustp")]
+position = Vector2(0, 168)
+layer_0/tile_data = PackedInt32Array(589824, 327687, 2, 655360, 327687, 2, 720896, 65543, 3, 720897, 131079, 3, 655361, 786439, 6, 589825, 393223, 2, 589826, 393223, 2, 655362, 524295, 7, 720898, 131079, 3, 720899, 131079, 3, 655363, 589831, 7, 589827, 393223, 2, 589828, 393223, 2, 589829, 393223, 2, 655365, 524295, 7, 655364, 655367, 6, 720900, 131079, 3, 720901, 131079, 3, 589830, 655367, 5, 655366, 720903, 6, 720902, 131079, 3, 720903, 131079, 3, 655367, 589831, 6, 589831, 655367, 5, 589832, 327687, 2, 589833, 655367, 5, 720905, 131079, 3, 720904, 131079, 3, 655368, 589831, 6, 655369, 589831, 7, 589834, 327687, 2, 655370, 393223, 7, 720906, 131079, 3, 589835, 655367, 5, 655371, 720903, 7, 720907, 131079, 3, 720908, 131079, 3, 655372, 655367, 6, 589836, 327687, 2, 589837, 655367, 5, 589838, 655367, 5, 589839, 655367, 5, 589840, 655367, 5, 589841, 393223, 2, 589842, 393223, 2, 589843, 393223, 2, 589844, 393223, 2, 655373, 458759, 7, 655374, 393223, 6, 655375, 458759, 6, 655376, 524295, 6, 655377, 458759, 6, 655378, 655367, 6, 655379, 458759, 6, 655380, 524295, 7, 655381, 720903, 7, 655382, 458759, 7, 655383, 524295, 6, 655395, 524295, 6, 655396, 524295, 7, 655397, 589831, 7, 655398, 458759, 6, 655399, 196615, 2, 589845, 393223, 2, 589846, 393223, 2, 589847, 393223, 2, 589859, 393223, 2, 589860, 393223, 2, 589861, 393223, 2, 589862, 131079, 1, 589863, 196615, 2, 720909, 131079, 3, 720910, 131079, 3, 720911, 131079, 3, 720912, 131079, 3, 720913, 131079, 3, 720914, 131079, 3, 720915, 131079, 3, 720916, 131079, 3, 720917, 131079, 3, 720918, 131079, 3, 720919, 131079, 3, 720931, 131079, 3, 720932, 131079, 3, 720933, 131079, 3, 720934, 131079, 3, 720935, 196615, 3, 589848, 393223, 2, 655384, 786439, 7, 720920, 131079, 3, 589849, 393223, 2, 655385, 393223, 6, 720921, 131079, 3, 589850, 393223, 2, 655386, 720903, 7, 720922, 131079, 3, 589851, 393223, 2, 655387, 458759, 6, 720923, 131079, 3, 589852, 393223, 2, 655388, 589831, 6, 720924, 131079, 3, 589853, 393223, 2, 655389, 589831, 6, 720925, 131079, 3, 589854, 393223, 2, 655390, 524295, 6, 720926, 131079, 3, 589855, 393223, 2, 655391, 655367, 7, 720927, 131079, 3, 589856, 393223, 2, 655392, 786439, 6, 720928, 131079, 3, 589857, 393223, 2, 655393, 393223, 7, 720929, 131079, 3, 589858, 393223, 2, 655394, 655367, 7, 720930, 131079, 3)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(1440, 0)
+
+[node name="Parallax-space-backgound" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+modulate = Color(0.270588, 0.835294, 0.972549, 1)
+position = Vector2(320, 180)
+scale = Vector2(2.35294, 2.25)
+texture = ExtResource("5_au7ra")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(1440, 0)
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(1440, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="LevelCompleted" type="ColorRect" parent="CanvasLayer"]
+process_mode = 3
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.352941)
+script = SubResource("GDScript_nrgg5")
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/LevelCompleted"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/LevelCompleted/CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/LevelCompleted/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Level Complete!
+
+
+
+"
+label_settings = SubResource("LabelSettings_2f6ys")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/LevelCompleted/CenterContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TimeLabel" type="Label" parent="CanvasLayer/LevelCompleted/CenterContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="BestTime" type="Label" parent="CanvasLayer/LevelCompleted/CenterContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "New Best Time!"
+horizontal_alignment = 1
+
+[node name="NextLevel" type="Button" parent="CanvasLayer/LevelCompleted/CenterContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Next Level"
+
+[node name="RetryLevel" type="Button" parent="CanvasLayer/LevelCompleted/CenterContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Retry Level"
+
+[node name="MainMenu" type="Button" parent="CanvasLayer/LevelCompleted/CenterContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Main Menu"
+
+[node name="QuitButton" type="Button" parent="CanvasLayer/LevelCompleted/CenterContainer/VBoxContainer/VBoxContainer"]
+process_mode = 3
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Quit
+"
+
+[node name="PlayerSprite" type="CharacterBody2D" parent="CanvasLayer/LevelCompleted"]
+process_mode = 3
+position = Vector2(320, 184)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/LevelCompleted/PlayerSprite"]
+process_mode = 3
+scale = Vector2(4.6001, 4.6001)
+sprite_frames = SubResource("SpriteFrames_saqf4")
+animation = &"run"
+frame = 6
+frame_progress = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/LevelCompleted/PlayerSprite"]
+process_mode = 3
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_ge4s5")
+}
+autoplay = "level_complete"
+
+[node name="StartIn" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0745098, 0.0745098, 0.0745098, 0.478431)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/StartIn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/StartIn/VBoxContainer"]
+layout_mode = 2
+
+[node name="LevelNumLabel" type="Label" parent="CanvasLayer/StartIn/VBoxContainer/CenterContainer"]
+layout_mode = 2
+text = "
+
+
+
+
+"
+
+[node name="StartInLabel" type="Label" parent="CanvasLayer/StartIn/VBoxContainer/CenterContainer"]
+layout_mode = 2
+text = "Starts in: 3"
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 24.0
+grow_horizontal = 2
+
+[node name="LevelTimeLabel" type="Label" parent="CanvasLayer/CenterContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="PauseMenu" type="Panel" parent="CanvasLayer"]
+process_mode = 3
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PauseMenu/CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/PauseMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Paused"
+label_settings = SubResource("LabelSettings_6y1sp")
+horizontal_alignment = 1
+
+[node name="Unpause" type="Button" parent="CanvasLayer/PauseMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="RestartLevel" type="Button" parent="CanvasLayer/PauseMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Restart Level"
+
+[node name="SoundSettings" type="Button" parent="CanvasLayer/PauseMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Sound Settings"
+
+[node name="MainMenu" type="Button" parent="CanvasLayer/PauseMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="Quit" type="Button" parent="CanvasLayer/PauseMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[node name="MenuButton" type="Button" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -38.0
+offset_bottom = 16.0
+grow_horizontal = 0
+text = "MENU"
+
+[node name="SoundSettingsMenu" type="Panel" parent="CanvasLayer"]
+process_mode = 3
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/SoundSettingsMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/SoundSettingsMenu/CenterContainer"]
+layout_mode = 2
+
+[node name="MasterVol" type="Label" parent="CanvasLayer/SoundSettingsMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Master Volume"
+
+[node name="volume_slider" parent="CanvasLayer/SoundSettingsMenu/CenterContainer/VBoxContainer" instance=ExtResource("8_jdji5")]
+layout_mode = 2
+bus_name = "Master"
+
+[node name="MusicVol" type="Label" parent="CanvasLayer/SoundSettingsMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Music Volume"
+
+[node name="volume_slider2" parent="CanvasLayer/SoundSettingsMenu/CenterContainer/VBoxContainer" instance=ExtResource("8_jdji5")]
+layout_mode = 2
+bus_name = "Music"
+
+[node name="SFXVol" type="Label" parent="CanvasLayer/SoundSettingsMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Sound Effects Volume"
+
+[node name="volume_slider3" parent="CanvasLayer/SoundSettingsMenu/CenterContainer/VBoxContainer" instance=ExtResource("8_jdji5")]
+layout_mode = 2
+bus_name = "Sound Effects"
+
+[node name="PauseReturn" type="Button" parent="CanvasLayer/SoundSettingsMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Return to Pause Menu"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+process_mode = 3
+libraries = {
+"": SubResource("AnimationLibrary_8jtcm")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+
+[connection signal="next_level" from="CanvasLayer/LevelCompleted" to="." method="_on_level_completed_next_level"]
+[connection signal="pressed" from="CanvasLayer/LevelCompleted/CenterContainer/VBoxContainer/VBoxContainer/NextLevel" to="CanvasLayer/LevelCompleted" method="_on_next_level_pressed"]
+[connection signal="pressed" from="CanvasLayer/LevelCompleted/CenterContainer/VBoxContainer/VBoxContainer/RetryLevel" to="." method="_on_retry_level_pressed"]
+[connection signal="pressed" from="CanvasLayer/LevelCompleted/CenterContainer/VBoxContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/LevelCompleted/CenterContainer/VBoxContainer/VBoxContainer/QuitButton" to="CanvasLayer/LevelCompleted" method="_on_quit_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/CenterContainer/VBoxContainer/Unpause" to="." method="_on_unpause_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/CenterContainer/VBoxContainer/RestartLevel" to="." method="_on_restart_level_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/CenterContainer/VBoxContainer/SoundSettings" to="." method="_on_sound_settings_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/CenterContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/CenterContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="CanvasLayer/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/SoundSettingsMenu/CenterContainer/VBoxContainer/PauseReturn" to="." method="_on_pause_return_pressed"]

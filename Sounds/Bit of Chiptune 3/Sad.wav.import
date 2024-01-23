@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cwitpiarbpfw4"
+path="res://.godot/imported/Sad.wav-046801ff0bae6fbd1b0e9943b4d4c769.sample"
+
+[deps]
+
+source_file="res://Sounds/Bit of Chiptune 3/Sad.wav"
+dest_files=["res://.godot/imported/Sad.wav-046801ff0bae6fbd1b0e9943b4d4c769.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=2
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=2 format=3 uid="uid://ocua1adtnd6s"]
+
+[ext_resource type="Script" path="res://Scripts/Resources.gd" id="1_cbpib"]
+
+[resource]
+script = ExtResource("1_cbpib")
+Level_Number = 2
+Level_Name = "Out of the Frying Pan..."
+Best_Time = 99999.0
+Star_Collected = false
