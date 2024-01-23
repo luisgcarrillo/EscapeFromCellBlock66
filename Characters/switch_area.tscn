@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmcj2ndsx3kvd"]
+
+[ext_resource type="Texture2D" uid="uid://4t8nu8ohxkrm" path="res://Characters/Pixel Art Buttons.png" id="1_4jovr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ydl3y"]
+size = Vector2(12, 11)
+
+[node name="SwitchArea" type="Area2D" groups=["SwitchAreas"]]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(7, -5.5)
+shape = SubResource("RectangleShape2D_ydl3y")
+
+[node name="RedButton" type="Sprite2D" parent="."]
+modulate = Color(0.710052, 0.207443, 0.275265, 1)
+position = Vector2(7, -5)
+scale = Vector2(0.195312, 0.195312)
+texture = ExtResource("1_4jovr")
+hframes = 8
+vframes = 5
+frame = 1
+
+[node name="GreenButton" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.188235, 0.741176, 0.0941176, 1)
+position = Vector2(7, -5)
+scale = Vector2(0.195312, 0.195312)
+texture = ExtResource("1_4jovr")
+hframes = 8
+vframes = 5
+frame = 1

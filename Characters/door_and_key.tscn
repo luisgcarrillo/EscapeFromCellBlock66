@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://nmirif0h8vfa"]
+
+[ext_resource type="Texture2D" uid="uid://bxwn1jdgef28r" path="res://Art/Dungeon Tile Set.png" id="1_c0v8e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_enuyg"]
+size = Vector2(16, 26)
+
+[node name="Door" type="Area2D" groups=["Door"]]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_enuyg")
+
+[node name="DoorOpen" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("1_c0v8e")
+region_enabled = true
+region_rect = Rect2(192, 160, 8, 32)
+
+[node name="DoorClosed" type="Sprite2D" parent="."]
+texture = ExtResource("1_c0v8e")
+region_enabled = true
+region_rect = Rect2(208, 160, 16, 32)

@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://04xyq1obhexd"
+path="res://.godot/imported/mega-bot-pipes under.ogg-ba995c811f28c5f660d908fec9382bbb.oggvorbisstr"
+
+[deps]
+
+source_file="res://Sounds/ActionPack1/mega-bot-pipes under.ogg"
+dest_files=["res://.godot/imported/mega-bot-pipes under.ogg-ba995c811f28c5f660d908fec9382bbb.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4
